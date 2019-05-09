@@ -9,6 +9,23 @@
 class MenuScreen {
   constructor(containerElement) {
     this.containerElement = containerElement;
+    var choice=this.containerElement.querySelector('#choices');
+    for (let fd of FLASHCARD_DECKS){
+      let choice_d=document.createElement('div');
+      choice_d.appendChild(document.createTextNode(fd.title));
+      choice.appendChild(choice_d);
+    }
+    choice=this.containerElement.querySelectorAll('#choices div');
+    for(let choise_d of choice){
+      choise_d.addEventListener('click',this.click.bind(this,choise_d.valueOf().textContent));
+    }
+    document.addEventListener('showMenuScreen',this.show.bind(this));
+
+    /*
+    this.containerElement.querySelector('#choices').innerHTML="<div>"+FLASHCARD_DECKS[0]['title']+"</div>";
+    this.containerElement.querySelector('#choices').innerHTML+="<div>"+FLASHCARD_DECKS[1]['title']+"</div>";
+    this.containerElement.querySelector('#choices').innerHTML+="<div>"+FLASHCARD_DECKS[2]['title']+"</div>";
+*/
   }
 
   show() {
@@ -17,5 +34,11 @@ class MenuScreen {
 
   hide() {
     this.containerElement.classList.add('inactive');
+  }
+
+  click(title,t){
+    //console.log(title);
+    this.hide();
+    document.dispatchEvent(new CustomEvent('showFlashcardScreen',{detail:{'titlename' : title}}));
   }
 }

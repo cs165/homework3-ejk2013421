@@ -1,3 +1,16 @@
 /*
 TODO(you): Write any additional styles you need here.
 */
+@keyframes mymove
+{
+    0%   {top:100%;}
+    100% {top:0;}
+}
+
+.flashcard-box .word{
+    animation:mymove 0.5s;
+}
+
+.flashcard-container-reset{
+    transition: transform 0.6s;
+}
