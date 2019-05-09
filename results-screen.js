@@ -19,7 +19,7 @@ class ResultsScreen {
     this.containerElement.classList.remove('inactive');
     this.correct=numberCorrect.detail.valueOf().correct;
     this.incorrect=numberCorrect.detail.valueOf().incorrect;
-    const per=(this.correct/(this.correct+this.incorrect))*100;
+    const per=Math.round((this.correct/(this.correct+this.incorrect))*100);
     document.querySelector('.percent').textContent=per;
     if(per==100){
       document.querySelector('.continue').textContent="Start over?";
